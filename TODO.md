@@ -1,9 +1,9 @@
-# Cahier des charges : Bot Discord de gestion de cinémathèque personnelle
+# Cahier des charges complet : Bot Discord de gestion de cinémathèque personnelle avec Docker et Kubernetes
 
 ## 1. Présentation du projet
 
 ### 1.1 Objectif
-Développer un bot Discord permettant aux utilisateurs de gérer leur collection de films personnelle, incluant un système de notation, directement depuis un serveur Discord.
+Développer un bot Discord permettant aux utilisateurs de gérer leur collection de films personnelle, incluant un système de notation, directement depuis un serveur Discord. Le projet sera containerisé avec Docker et déployé sur Kubernetes pour assurer sa scalabilité et sa facilité de déploiement.
 
 ### 1.2 Public cible
 Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visionnages de films.
@@ -55,7 +55,13 @@ Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visio
 ### 3.4 Intégration API externe
 - Utilisation de l'API TMDB (The Movie Database) pour la vérification et la récupération des informations des films
 
-### 3.5 Commandes du bot et leur fonctionnement détaillé
+### 3.5 Containerisation
+- Docker pour la containerisation de l'application
+
+### 3.6 Orchestration
+- Kubernetes pour le déploiement, la mise à l'échelle et la gestion de l'application
+
+### 3.7 Commandes du bot et leur fonctionnement détaillé
 
 1. `!add <titre> | <réalisateur> | <année> | <genre>`
    - Description : Ajoute un nouveau film à la collection de l'utilisateur.
@@ -167,6 +173,7 @@ Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visio
       c. Si plusieurs résultats, permet à l'utilisateur de choisir le bon.
     - Exemple : `!verify The Matrix`
 
+
 ## 4. Sécurité et gestion des erreurs
 
 ### 4.1 Authentification
@@ -180,6 +187,10 @@ Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visio
 - Messages d'erreur clairs pour l'utilisateur
 - Journalisation des erreurs côté serveur
 
+### 4.4 Sécurité des conteneurs
+- Utilisation d'images de base minimales et sécurisées
+- Scan des vulnérabilités des conteneurs
+
 ## 5. Performance
 
 ### 5.1 Temps de réponse
@@ -187,6 +198,7 @@ Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visio
 
 ### 5.2 Charge
 - Support jusqu'à 1000 utilisateurs actifs simultanément
+- Capacité à scaler horizontalement grâce à Kubernetes
 
 ## 6. Évolutivité
 
@@ -195,6 +207,9 @@ Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visio
 - Exportation de la collection en format CSV
 - Système de tags personnalisés
 - Création de listes thématiques (ex: films d'horreur, comédies romantiques)
+
+### 6.2 Scalabilité
+- Utilisation de Kubernetes pour faciliter la mise à l'échelle de l'application
 
 ## 7. Tests
 
@@ -207,30 +222,51 @@ Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visio
 ### 7.3 Tests de charge
 - Simulation de multiples requêtes simultanées
 
+### 7.4 Tests de conteneurs
+- Vérification de la bonne construction et du bon fonctionnement des conteneurs Docker
+
 ## 8. Documentation
 
 ### 8.1 Documentation technique
 - Commentaires dans le code
 - README détaillé pour l'installation et la configuration
+- Documentation sur la structure des conteneurs Docker et le déploiement Kubernetes
 
 ### 8.2 Documentation utilisateur
 - Guide d'utilisation avec exemples pour chaque commande
 
 ## 9. Déploiement
 
-### 9.1 Environnement
-- Déploiement sur un serveur Linux (ex: Ubuntu 22.04 LTS)
+### 9.1 Containerisation avec Docker
+- Création d'un Dockerfile pour l'application
+- Construction de l'image Docker
+- Publication de l'image sur un registre de conteneurs (ex: Docker Hub)
 
-### 9.2 Monitoring
+### 9.2 Déploiement sur Kubernetes
+- Création des fichiers de configuration Kubernetes (Deployments, Services, etc.)
+- Configuration des ressources nécessaires (CPU, mémoire)
+- Mise en place de la persistance des données pour la base SQLite
+
+### 9.3 Environnement
+- Déploiement sur un cluster Kubernetes (ex: Google Kubernetes Engine, Amazon EKS)
+
+### 9.4 Monitoring
 - Mise en place de logs pour surveiller l'activité du bot
+- Intégration avec des outils de monitoring Kubernetes (ex: Prometheus, Grafana)
 
 ## 10. Maintenance
 
 ### 10.1 Mises à jour
 - Plan pour les mises à jour de sécurité et de fonctionnalités
+- Stratégie de déploiement continu avec Kubernetes (ex: rolling updates)
 
 ### 10.2 Sauvegarde
 - Système de sauvegarde quotidienne de la base de données
+- Utilisation de volumes persistants Kubernetes pour les données
+
+### 10.3 Gestion des conteneurs
+- Stratégie de mise à jour des images Docker
+- Gestion des versions des conteneurs
 
 ## 11. Calendrier prévisionnel
 
@@ -238,6 +274,9 @@ Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visio
 - Phase 2 (1 semaine) : Implémentation de la base de données et de la persistance
 - Phase 3 (1 semaine) : Ajout du système de notation et des fonctionnalités avancées (stats, recommandations)
 - Phase 4 (1 semaine) : Tests et débogage
-- Phase 5 (1 semaine) : Documentation et déploiement
+- Phase 5 (1 semaine) : Containerisation avec Docker
+- Phase 6 (1 semaine) : Configuration et déploiement sur Kubernetes
+- Phase 7 (1 semaine) : Tests d'intégration, de charge et optimisation
+- Phase 8 (1 semaine) : Documentation et finalisation
 
-Durée totale estimée : 6 semaines
+Durée totale estimée : 9 semaines
