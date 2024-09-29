@@ -30,7 +30,7 @@ Cinéphiles actifs sur Discord souhaitant organiser, suivre et noter leurs visio
 - Afficher la moyenne des notes
 - Afficher les films les mieux notés
 
-## 2.4 Vérification des films dans une base de données en ligne
+### 2.4 Vérification des films dans une base de données en ligne
 - Vérifier l'existence d'un film dans une base de données en ligne (TMDB)
 - Récupérer automatiquement les informations du film si trouvé
 - Permettre à l'utilisateur de choisir entre plusieurs résultats si ambiguïté

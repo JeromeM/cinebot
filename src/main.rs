@@ -14,7 +14,7 @@ struct Handler;
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, _: Context, ready: Ready) {
-        println!("{} est connecté!", ready.user.name);
+        println!("{} connected !", ready.user.name);
     }
 }
 
@@ -22,7 +22,7 @@ impl EventHandler for Handler {
 async fn main() {
     dotenv().ok();
     
-    let token = std::env::var("DISCORD_TOKEN").expect("Token non trouvé");
+    let token = std::env::var("DISCORD_TOKEN").expect("Token not found");
     let intents = GatewayIntents::GUILD_MESSAGES
         | GatewayIntents::DIRECT_MESSAGES
         | GatewayIntents::MESSAGE_CONTENT;
@@ -35,9 +35,9 @@ async fn main() {
         .event_handler(Handler)
         .framework(framework)
         .await
-        .expect("Erreur lors de la création du client");
+        .expect("Error while creating new client");
 
     if let Err(why) = client.start().await {
-        println!("Une erreur s'est produite lors de l'exécution du client: {:?}", why);
+        println!("An error occured while running client : {:?}", why);
     }
 }
