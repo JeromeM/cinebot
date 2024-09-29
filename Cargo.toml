@@ -1,0 +1,9 @@
+[package]
+name = "cinebot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dotenv = "0.15"
+serenity = { version = "0.11", features = ["client", "gateway"] }
+tokio = { version = "1", features = ["full"] }
